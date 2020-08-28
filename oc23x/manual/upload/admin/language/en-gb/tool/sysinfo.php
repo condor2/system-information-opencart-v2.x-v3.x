@@ -52,7 +52,7 @@ $_['text_date_unmatch']       	= '<b>Important!</b> PHP and Database date not ma
 $_['text_time_unmatch']       	= '<b>Important!</b> PHP and Database time not match';
 
 $_['text_php_version']          = 'PHP Version';
-$_['text_req_php_version']      = '5.4+';
+$_['text_req_php_version']      = '7.0+';
 $_['text_register_globals']     = 'Register Globals';
 $_['text_magic_quotes']         = 'Magic Quotes GPC';
 $_['text_file_uploads']         = 'File Uploads';
@@ -64,7 +64,7 @@ $_['text_session_cookies']      = 'Cookies';
 $_['text_database_type']        = 'Database (%s)';
 $_['text_gd']                   = 'GD';
 $_['text_curl']                 = 'Curl';
-$_['text_mcrypt']               = 'mCrypt';
+$_['text_openssl']              = 'OpenSSL';
 $_['text_mbstring']             = 'mbString';
 $_['text_fsock']                = 'Fsock';
 $_['text_zlib']                 = 'Zlib';

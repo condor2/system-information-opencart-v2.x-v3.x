@@ -1,8 +1,5 @@
-<?php echo $header; ?>
-<?php echo $menu; ?>
-
+<?php echo $header; ?><?php echo $column_left; ?>
 <div id="content">
-
 <ul class="uk-breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
         <?php if ($breadcrumb['href']) { ?>
@@ -12,9 +9,7 @@
         <?php } ?>
     <?php } ?>
 </ul>
-
 <div class="uk-container uk-container-center">
-
 <div class="uk-grid app-title">
     <div class="uk-width-2-3">
         <h2>
@@ -28,12 +23,9 @@
         </div>
     </div>
 </div>
-
 <div class="et-content-border">
 <div id="et-content">
-
     <h2 class="uk-section"><?php echo $section_site_info; ?></h2>
-
     <div class="uk-grid">
         <div class="uk-width-1-2">
             <table class="uk-table uk-table-striped uk-table-hover">
@@ -190,8 +182,6 @@
             </tr>
         </tbody>
     </table>
-    <p class="uk-text-small uk-text-muted"><span class="uk-badge uk-badge-success">TIPS</span> Follow this <a href="http://www.opencartnews.com/tutorials/how-to-change-opencart-timezone/" target="_blank">tutorial</a> to fix different PHP and Database datetime.</p>
-
     <h2 class="uk-section"><?php echo $section_requirement; ?></h2>
 
     <table class="uk-table uk-table-striped uk-table-hover uk-text-center">
@@ -218,9 +208,17 @@
             </tr>
             <tr>
                 <td class="uk-text-left"><?php echo $text_magic_quotes;?></td>
+                <td><?php if ($magic_quotes_gpc) { ?>
+                  <?php echo $text_on; ?>
+                  <?php } else { ?>
+                  <?php echo $text_off; ?>
+                  <?php } ?></td>
                 <td><?php echo $text_off; ?></td>
-                <td><?php echo (ini_get('magic_quotes_gpc') || get_magic_quotes_gpc()) ? '<span class="uk-badge uk-badge-danger">'.$text_on.'</span>' : $text_off; ?></td>
-                <td><?php echo (!ini_get('magic_quotes_gpc') || !get_magic_quotes_gpc()) ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>'; ?></td>
+                <td><?php if (!$magic_quotes_gpc) { ?>
+                  <i class="uk-icon-check uk-icon-small uk-text-success"></i>
+                  <?php } else { ?>
+                  <i class="uk-icon-times uk-icon-small uk-text-danger"></i>
+                  <?php } ?></td>
             </tr>
             <tr>
                 <td class="uk-text-left"><?php echo $text_file_uploads;?></td>
@@ -280,10 +278,10 @@
                 <td><?php echo extension_loaded('curl') ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>'; ?></td>
             </tr>
             <tr>
-                <td class="uk-text-left"><?php echo $text_mcrypt;?></td>
+                <td class="uk-text-left"><?php echo $text_openssl;?></td>
                 <td><?php echo $text_on; ?></td>
-                <td><?php echo extension_loaded('mcrypt') || function_exists('mcrypt_encrypt') ? $text_on : '<span class="uk-badge uk-badge-danger">'.$text_off.'</span>'; ?></td>
-                <td><?php echo extension_loaded('mcrypt') || function_exists('mcrypt_encrypt') ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>'; ?></td>
+                <td><?php echo extension_loaded('openssl') || function_exists('openssl_encrypt') ? $text_on : '<span class="uk-badge uk-badge-danger">'.$text_off.'</span>'; ?></td>
+                <td><?php echo extension_loaded('openssl') || function_exists('openssl_encrypt') ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>'; ?></td>
             </tr>
             <?php if (!function_exists('iconv')) { ?>
                 <tr>
