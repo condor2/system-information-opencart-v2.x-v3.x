@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+    <name>System Information</name>
+    <version>2.5.0</version>
+    <code>sysinfo_2_5_0</code>
+    <author><![CDATA[EchoThemes & xxvirusxx]]></author>
+    <link>http://www.echothemes.com</link>
+
+    <file path="admin/controller/common/column_left.php">
+        <operation info="Add customer summary menu">
+            <search><![CDATA[$report = array();]]></search>
+            <add position="before"><![CDATA[
+            if ($this->user->hasPermission('access', 'tool/sysinfo')) {
+                $data['menus'][] = array(
+                    'id'       => 'sysinfo',
+                    'icon'     => 'fa fa-microchip',
+                    'name'     => 'System Information',
+                    'href'     => $this->url->link('tool/sysinfo', 'user_token=' . $this->session->data['user_token'], true),
+                    'children' => array()
+                );
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="system/library/db.php">
+        <operation>
+            <search><![CDATA[public function getLastId()]]></search>
+            <add position="before"><![CDATA[
+            public function getServerInfo() {
+                return $this->adaptor->getServerInfo();
+            }
+
+            public function getHostInfo() {
+                return $this->adaptor->getHostInfo();
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="system/library/db/mysqli.php">
+        <operation>
+            <search><![CDATA[public function getLastId()]]></search>
+            <add position="before"><![CDATA[
+            public function getServerInfo() {
+                return $this->connection->server_info;
+            }
+
+            public function getHostInfo() {
+                return $this->connection->host_info;
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="system/library/db/pdo.php">
+        <operation>
+            <search><![CDATA[public function getLastId()]]></search>
+            <add position="before"><![CDATA[
+            public function getServerInfo() {
+                return $this->connection->server_info;
+            }
+
+            public function getHostInfo() {
+                return $this->connection->host_info;
+            }
+            ]]></add>
+        </operation>
+    </file>
+    <file path="system/library/db/pgsql.php">
+        <operation>
+            <search><![CDATA[public function getLastId()]]></search>
+            <add position="before"><![CDATA[
+            public function getServerInfo() {
+                return $this->connection->server_info;
+            }
+
+            public function getHostInfo() {
+                return $this->connection->host_info;
+            }
+            ]]></add>
+        </operation>
+    </file>
+</modification>

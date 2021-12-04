@@ -1,0 +1,434 @@
+{{ header }}{{ column_left }}
+<div id="content">
+<ul class="uk-breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+        {% if breadcrumb.href %}
+            <li><a href="{{ breadcrumb.href }}" class="uk-link">{{ breadcrumb.text }}</a></li>
+        {% else %}
+            <li class="{{ breadcrumb.class == 'active' ? 'uk-active' : '' }}"><span>{{ breadcrumb.text }}</span></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<div class="uk-container uk-container-center">
+<div class="uk-grid app-title">
+    <div class="uk-width-2-3">
+        <h2>
+            {{ ext_name }}
+            <span class="uk-text-medium">v{{ ext_version }}</span>
+        </h2>
+    </div>
+    <div class="uk-width-1-3 uk-text-right">
+        <div class="by-et">
+            By: <a href="http://www.echothemes.com" target="_blank">EchoThemes</a> & <a href="https://www.free-time-info.com/en/" target="_blank">xxvirusxx</a>
+        </div>
+    </div>
+</div>
+<div class="et-content-border">
+<div id="et-content">
+    <h2 class="uk-section">{{ section_site_info }}</h2>
+    <div class="uk-grid">
+        <div class="uk-width-1-2">
+            <table class="uk-table uk-table-striped uk-table-hover">
+                <tr>
+                    <td class="uk-width-3-5">{{ text_oc_version }}</td>
+                    <td>{{ oc_version }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_stores }}</td>
+                    <td>{{ stores }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_ssl }}</td>
+                    <td>{{ ssl ? text_enable : text_disable }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_seo }}</td>
+                    <td>{{ seo ? text_enable : text_disable }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_maintenance }}</td>
+                    <td>{{ maintenance ? text_enable : text_disable }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_compression }}</td>
+                    <td>{{ compression }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="uk-width-1-2">
+            <table class="uk-table uk-table-striped uk-table-hover">
+                <tr>
+                    <td class="uk-width-3-5">{{ text_mail }}</td>
+                    <td>{{ mail }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_captcha }}</td>
+                    <td>{{ captcha }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_currency }}</td>
+                    <td>{{ currency ? text_enable : text_disable }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_error_display }}</td>
+                    <td>{{ error_display ? text_enable : text_disable }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_error_log }}</td>
+                    <td>{{ error_log ? text_enable : text_disable }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <h2 class="uk-section">{{ section_server_info }}</h2>
+    <div class="uk-float-right uk-text-small" style="margin-top:-30px">
+        {{ text_full_phpinfo }} <a href="{{ url_phpinfo }}" target="_blank">phpnfo()</a>
+    </div>
+
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th colspan="2">{{ text_machine }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="uk-width-3-10">{{ text_operating_sys }}</td>
+                <td>{{ operating_sys }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_web_server }}</td>
+                <td>{{ web_server }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_web_host }}</td>
+                <td>{{ web_host }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_root_path }}</td>
+                <td>{{ root_path }}</td>
+            </tr>
+        </tbody>
+    </table>
+    {% if db %}
+        <table class="uk-table uk-table-striped uk-table-hover">
+            <thead>
+                <tr>
+                    <th colspan="2">{{ text_database }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="uk-width-3-10">{{ text_db_driver }}</td>
+                    <td>{{ database_driver }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_db_version }}</td>
+                    <td>{{ db_server }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_db_host }}</td>
+                    <td>{{ db_host }}</td>
+                </tr>
+                <tr>
+                    <td>{{ text_db_name }}</td>
+                    <td>{{ database_name }}</td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
+    <table class="uk-table uk-table-striped uk-table-hover">
+        <thead>
+            <tr>
+                <th colspan="2">{{ text_timezone }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="uk-width-3-10">{{ text_ini_timezone }}</td>
+                <td>{{ php_i_timezone }} {% if not date_timzone %} {{ date_timzone ? '- <span class="uk-text-small uk-text-muted">( ' ~ text_not_set ~ ' )</span>' : '' }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>{{ text_php_timezone }}</td>
+                <td>{{ php_timezone }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_db_timezone }}</td>
+                <td>{{ db_timezone }} {{ db_timezone == 'SYSTEM' ? '<span class="uk-text-small uk-text-muted">( ' ~ text_os_timezone ~ ' )</span>' : '' }}</td>
+            </tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+                <td>{{ text_php_date_now }}</td>
+                <td>{{ date_php_now }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_php_time_now }}</td>
+                <td>{{ time_php_now }}</td>
+            </tr>
+            <tr>
+                <td>{{ text_db_date_now }}</td>
+                <td>{{ date_db_now }} {% if not match_date %} {{ match_date ? '<span class="uk-text-small uk-text-danger uk-margin-left">' ~ text_date_unmatch ~ '<span>' : '' }}{% endif %}</td>
+            </tr>
+            <tr>
+                <td>{{ text_db_time_now }}</td>
+                <td>{{ time_db_now }} {% if not match_time %} {{ match_time ? '<span class="uk-text-small uk-text-danger uk-margin-left">' ~ text_time_unmatch ~ '<span>' : ''}}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="uk-section">{{ section_requirement }}</h2>
+
+    <table class="uk-table uk-table-striped uk-table-hover uk-text-center">
+        <thead>
+            <tr>
+                <th class="uk-width-9-20">{{ text_setting }}</th>
+                <th class="uk-width-4-20 uk-text-center">{{ text_required }}</th>
+                <th class="uk-width-4-20 uk-text-center">{{ text_server }}</th>
+                <th class="uk-width-3-20 uk-text-center">{{ text_status }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="uk-text-left">{{ text_php_version }}</td>
+                <td>{{ text_req_php_version }}</td>
+                <td>{{ php_version }}</td>
+                <td>{% if php_version >= '7.4' %} <i class="uk-icon-check uk-icon-small uk-text-success"></i> {% else %} <i class="uk-icon-times uk-icon-small uk-text-danger"></i> {% endif %}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_register_globals }}</td>
+                <td>{{ text_off }}</td>
+                <td>{{ register_globals ? '<span class="uk-badge uk-badge-danger">' ~ text_on ~ '</span>' : text_off }}</td>
+                <td>{% if not register_globals %} <i class="uk-icon-check uk-icon-small uk-text-success"></i> {% else %} <i class="uk-icon-times uk-icon-small uk-text-danger"></i> {% endif %}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_magic_quotes }}</td>
+                <td>{% if magic_quotes_gpc %}
+                    {{ text_on }}
+                  {% else %}
+                      {{ text_off }}
+                  {% endif %}</td>
+                <td>{{ text_off }}</td>
+                <td>{% if not magic_quotes_gpc %}
+                  <i class="uk-icon-check uk-icon-small uk-text-success"></i>
+                  {% else %}
+                  <i class="uk-icon-times uk-icon-small uk-text-danger"></i>
+                  {% endif %}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_file_uploads }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ file_uploads ? text_on : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ file_uploads ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_session_start }}</td>
+                <td>{{ text_off }}</td>
+                <td>{{ session_auto_start ? '<span class="uk-badge uk-badge-danger">' ~ text_on ~ '</span>' : text_off }}</td>
+                <td>{% if session_auto_start %} <i class="uk-icon-check uk-icon-small uk-text-success"></i> {% else %} <i class="uk-icon-times uk-icon-small uk-text-danger"></i> {% endif %}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_allow_url_fopen }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ allow_url_fopen ? text_on : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ allow_url_fopen ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_session_cookies }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ session_cookies ? text_on : text_off }}</td>
+                <td>{{ session_cookies ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="uk-table uk-table-striped uk-table-hover uk-text-center">
+        <thead>
+            <tr>
+                <th class="uk-width-9-20">{{ text_extenisons }}</th>
+                <th class="uk-width-4-20 uk-text-center">{{ text_required }}</th>
+                <th class="uk-width-4-20 uk-text-center">{{ text_current }}</th>
+                <th class="uk-width-3-20 uk-text-center">{{ text_status }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if db %}
+                <tr>
+                    <td class="uk-text-left">{{ database_type }}</td>
+                    <td>{{ text_on }}</td>
+                    <td>{{ db ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                    <td>{{ db ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="uk-text-left">{{ text_gd }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ gd ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ gd ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_curl }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ curl ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ curl ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_openssl }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ openssl ? text_on : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ openssl ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            {% if not iconv %}
+                <tr>
+                    <td class="uk-text-left">{{ text_mbstring }}</td>
+                    <td>{{ text_on }}</td>
+                    <td>{{ mbstring ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                    <td>{{ mbstring ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="uk-text-left">{{ text_fsock }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ sockets ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ sockets ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_zlib }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ zlib ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ zlib ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_zip }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ zip ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ zip ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ text_xml }}</td>
+                <td>{{ text_on }}</td>
+                <td>{{ xml ? 'On' : '<span class="uk-badge uk-badge-danger">' ~ text_off ~ '</span>' }}</td>
+                <td>{{ xml ? '<i class="uk-icon-check uk-icon-small uk-text-success"></i>' : '<i class="uk-icon-times uk-icon-small uk-text-danger"></i>' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="uk-section">{{ section_permission }}</h2>
+
+    <h3 class="uk-margin-small-bottom">{{ section_basic_security }}</h3>
+    <p class="uk-text-small uk-margin-small-top">Basic security practices as suggested on OpenCart <a href="http://docs.opencart.com/administration/security/" target="_blank">documentation</a> the following files need to be set to <code>644</code> or <code>444</code>.</p>
+    <table class="uk-table uk-table-striped uk-table-hover uk-text-center">
+        <thead>
+            <tr>
+                <th>{{ text_files }}</th>
+                <th class="uk-width-2-10 uk-text-center">{{ text_permission }}</th>
+                <th class="uk-width-2-10 uk-text-center">{{ text_status }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="uk-text-left">index.php</td>
+                <td>{{ catalog_index_perm }}</td>
+                <td>{{ writ_cat_index ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">config.php</td>
+                <td>{{ catalog_conf_perm }}</td>
+                <td>{{ writ_cat_config ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">admin/index.php</td>
+                <td>{{ admin_index_perm }}</td>
+                <td>{{ writ_adm_index ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">admin/config.php</td>
+                <td>{{ admin_conf_perm }}</td>
+                <td>{{ writ_adm_config ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">system/framework.php</td>
+                <td>{{ framework_perm }}</td>
+                <td>{{ writ_framework ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">system/startup.php</td>
+                <td>{{ startup_perm }}</td>
+                <td>{{ writ_startup ? '<span class="uk-badge uk-badge-warning">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-success">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>{{ text_directories }}</h3>
+    <table class="uk-table uk-table-striped uk-table-hover uk-text-center">
+        <thead>
+            <tr>
+                <th>{{ text_directories }}</th>
+                <th class="uk-width-2-10 uk-text-center">{{ text_permission }}</th>
+                <th class="uk-width-2-10 uk-text-center">{{ text_status }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="uk-text-left">{{ dir_image }}</td>
+                <td>{{ dir_image_perm }}</td>
+                <td>{{ dir_image_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ image_cache }}</td>
+                <td>{{ image_cache_perm }}</td>
+                <td>{{ image_cache_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ image_catalog }}</td>
+                <td>{{ image_catalog_perm }}</td>
+                <td>{{ image_catalog_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ storage_cache }}</td>
+                <td>{{ storage_cache_perm }}</td>
+                <td>{{ storage_cache_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ storage_logs }}</td>
+                <td>{{ storage_logs_perm }}</td>
+                <td>{{ storage_logs_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ storage_upload }}</td>
+                <td>{{ storage_upload_perm }}</td>
+                <td>{{ storage_upload_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ storage_download }}</td>
+                <td>{{ storage_download_perm }}</td>
+                <td>{{ storage_download_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            <tr>
+                <td class="uk-text-left">{{ storage_modification }}</td>
+                <td>{{ storage_modification_perm }}</td>
+                <td>{{ storage_modification_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+            </tr>
+            {% if detect_vqmod %}
+                {% if vqmod_cache %}
+                    <tr>
+                        <td class="uk-text-left">{{ '/vqmod/vqcache/' }}</td>
+                        <td>{{ vqmod_cache_perm }}</td>
+                        <td>{{ vqmod_cache_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+                    </tr>
+                {% endif %}
+                {% if vqmod_logs %}
+                    <tr>
+                        <td class="uk-text-left">{{ '/vqmod/logs/' }}</td>
+                        <td>{{ vqmod_logs_perm }}</td>
+                        <td>{{ vqmod_logs_writ ? '<span class="uk-badge uk-badge-success">' ~ text_writable ~ '</span>' : '<span class="uk-badge uk-badge-danger">' ~ text_unwritable ~ '</span>' }}</td>
+                    </tr>
+                {% endif %}
+            {% endif %}
+        </tbody>
+    </table>
+
+</div>
+</div>
+</div>
+
+</div>
+{{ footer }}
